@@ -1,6 +1,6 @@
 # neurorobotics-simulation
 Neurorobotics Simulation
-# pybullet-RL-walking-model
+
 
 Camera Control
 
