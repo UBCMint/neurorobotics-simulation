@@ -29,7 +29,7 @@ A real-time simulation environment for testing bipedal robot joint control using
 
 ```csharp
 // Camera settings
-float cameraSpeed = 5.0f;
+float cameraSpeed = 15.0f;
 float mouseSensitivity = 2.0f;
 
 // Joint control
