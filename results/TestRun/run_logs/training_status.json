@@ -1,0 +1,29 @@
+{
+    "Neurorobotics": {
+        "checkpoints": [
+            {
+                "steps": 9543,
+                "file_path": "results\\TestRun\\Neurorobotics\\Neurorobotics-9543.onnx",
+                "reward": 3.524205207824707,
+                "creation_time": 1754787578.3228953,
+                "auxillary_file_paths": [
+                    "results\\TestRun\\Neurorobotics\\Neurorobotics-9543.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 9543,
+            "file_path": "results\\TestRun\\Neurorobotics.onnx",
+            "reward": 3.524205207824707,
+            "creation_time": 1754787578.3228953,
+            "auxillary_file_paths": [
+                "results\\TestRun\\Neurorobotics\\Neurorobotics-9543.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}
