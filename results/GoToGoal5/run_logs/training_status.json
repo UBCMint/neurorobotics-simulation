@@ -1,0 +1,38 @@
+{
+    "Neurorobotics": {
+        "checkpoints": [
+            {
+                "steps": 499979,
+                "file_path": "results\\GoToGoal5\\Neurorobotics\\Neurorobotics-499979.onnx",
+                "reward": 1.0901823043823242,
+                "creation_time": 1755909606.9745266,
+                "auxillary_file_paths": [
+                    "results\\GoToGoal5\\Neurorobotics\\Neurorobotics-499979.pt"
+                ]
+            },
+            {
+                "steps": 531102,
+                "file_path": "results\\GoToGoal5\\Neurorobotics\\Neurorobotics-531102.onnx",
+                "reward": 3.1371602359807715,
+                "creation_time": 1755909699.7421591,
+                "auxillary_file_paths": [
+                    "results\\GoToGoal5\\Neurorobotics\\Neurorobotics-531102.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 531102,
+            "file_path": "results\\GoToGoal5\\Neurorobotics.onnx",
+            "reward": 3.1371602359807715,
+            "creation_time": 1755909699.7421591,
+            "auxillary_file_paths": [
+                "results\\GoToGoal5\\Neurorobotics\\Neurorobotics-531102.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

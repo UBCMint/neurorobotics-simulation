@@ -1,0 +1,65 @@
+{
+    "Neurorobotics": {
+        "checkpoints": [
+            {
+                "steps": 1499860,
+                "file_path": "results\\GoToGoal2\\Neurorobotics\\Neurorobotics-1499860.onnx",
+                "reward": -28.267170042605013,
+                "creation_time": 1755385138.4787319,
+                "auxillary_file_paths": [
+                    "results\\GoToGoal2\\Neurorobotics\\Neurorobotics-1499860.pt"
+                ]
+            },
+            {
+                "steps": 1999865,
+                "file_path": "results\\GoToGoal2\\Neurorobotics\\Neurorobotics-1999865.onnx",
+                "reward": 90.26800963878631,
+                "creation_time": 1755385634.882609,
+                "auxillary_file_paths": [
+                    "results\\GoToGoal2\\Neurorobotics\\Neurorobotics-1999865.pt"
+                ]
+            },
+            {
+                "steps": 2499991,
+                "file_path": "results\\GoToGoal2\\Neurorobotics\\Neurorobotics-2499991.onnx",
+                "reward": 124.32382487287425,
+                "creation_time": 1755386073.569669,
+                "auxillary_file_paths": [
+                    "results\\GoToGoal2\\Neurorobotics\\Neurorobotics-2499991.pt"
+                ]
+            },
+            {
+                "steps": 2999910,
+                "file_path": "results\\GoToGoal2\\Neurorobotics\\Neurorobotics-2999910.onnx",
+                "reward": 115.69182318337955,
+                "creation_time": 1755386518.9591901,
+                "auxillary_file_paths": [
+                    "results\\GoToGoal2\\Neurorobotics\\Neurorobotics-2999910.pt"
+                ]
+            },
+            {
+                "steps": 3002337,
+                "file_path": "results\\GoToGoal2\\Neurorobotics\\Neurorobotics-3002337.onnx",
+                "reward": 114.5867086138044,
+                "creation_time": 1755386646.9266603,
+                "auxillary_file_paths": [
+                    "results\\GoToGoal2\\Neurorobotics\\Neurorobotics-3002337.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3002337,
+            "file_path": "results\\GoToGoal2\\Neurorobotics.onnx",
+            "reward": 114.5867086138044,
+            "creation_time": 1755386646.9266603,
+            "auxillary_file_paths": [
+                "results\\GoToGoal2\\Neurorobotics\\Neurorobotics-3002337.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

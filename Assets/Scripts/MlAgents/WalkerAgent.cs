@@ -3,7 +3,6 @@ using Unity.MINTNeurorobotics;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
-using UnityEditor;
 using UnityEngine;
 using BodyPartHinge = Unity.MINTNeurorobotics.BodyPartHinge;
 using Random = UnityEngine.Random;
@@ -47,6 +46,15 @@ public class WalkerAgent : Agent
     public Transform leftArm;
     public Transform rightFoot;
     public Transform leftFoot;
+
+    [Range(-180f, 180f)]
+    public float PelvisRotationMax;
+
+    [Range(-180f, 180f)]
+    public float PelvisRotationMin;
+
+    private Vector3 prevLeftFootPos;
+    private Vector3 prevRightFootPos;
 
     //This will be used as a stabilized model space reference point for observations
     //Because ragdolls can move erratically during training, using a stabilized reference transform improves learning
@@ -93,7 +101,19 @@ public class WalkerAgent : Agent
         //Reset all of the body parts
         foreach (var bodyPart in m_JdController.bodyPartsDict.Values)
         {
-            bodyPart.Reset(bodyPart);
+
+            if (bodyPart.rb.transform == rightArm || bodyPart.rb.transform == leftArm)
+            {
+                bodyPart.ResetRandomRotation(bodyPart);
+            }
+            //else if (bodyPart.rb.transform == pelvis) {
+            //    bodyPart.ResetPelvisRotation(bodyPart, PelvisRotationMax,PelvisRotationMin);
+            //}
+            else
+            {
+                bodyPart.Reset(bodyPart);
+            }
+
         }
 
         UpdateOrientationObjects();
@@ -101,6 +121,10 @@ public class WalkerAgent : Agent
         //Set our goal walking speed
         MTargetWalkingSpeed =
             randomizeWalkSpeedEachEpisode ? Random.Range(0.1f, m_maxWalkingSpeed) : MTargetWalkingSpeed;
+
+        prevLeftFootPos = leftFoot.position;
+        prevRightFootPos = rightFoot.position;
+
     }
 
     /// <summary>
@@ -217,8 +241,37 @@ public class WalkerAgent : Agent
             );
         }
 
+        float leftFootMove = Vector3.Distance(leftFoot.position, prevLeftFootPos);
+        float rightFootMove = Vector3.Distance(rightFoot.position, prevRightFootPos);
+
+        // small shaping reward for moving feet
+        AddReward(0.01f * (leftFootMove + rightFootMove));
+
+        // update previous positions
+        prevLeftFootPos = leftFoot.position;
+        prevRightFootPos = rightFoot.position;
+
+
+        // Keep pelvis upright
+        float uprightBonus = Vector3.Dot(pelvis.up, Vector3.up);
+        AddReward(0.05f * uprightBonus);
+
+        // Penalize excessive torque
+        foreach (var bp in m_JdController.bodyPartsList)
+            AddReward(-0.001f * bp.currentStrength);
 
         AddReward(matchSpeedReward);
+
+        if (pelvis.transform.localPosition.y <= -75)
+        {
+            AddReward(-10);
+            EndEpisode();
+        }
+
+        if (GetAvgVelocity().magnitude < 0.01f) {
+            AddReward(-2);
+            EndEpisode();
+        }
     }
 
     //Returns the average velocity of all of the body parts

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Unity.MLAgents;
+using System.Diagnostics.Contracts;
 
 namespace Unity.MINTNeurorobotics
 {
@@ -39,6 +40,36 @@ namespace Unity.MINTNeurorobotics
             if (bp.targetContact) bp.targetContact.touchingTarget = false;
         }
 
+        public void ResetRandomRotation(BodyPartHinge bp)
+        {
+
+            bp.rb.transform.position = bp.startingPos;
+            float randomAngle = Random.Range(bp.joints[0].limits.min, bp.joints[0].limits.max);
+            Quaternion randomRot = Quaternion.AngleAxis(randomAngle, bp.joints[0].axis);
+
+            bp.rb.transform.rotation = bp.startingRot * randomRot;  // this rotates the joint by the randomRotational amount relative to t he startingRot.
+
+            bp.rb.linearVelocity = Vector3.zero;
+            bp.rb.angularVelocity = Vector3.zero;
+
+            if (bp.groundContact) bp.groundContact.touchingGround = false;
+            if (bp.targetContact) bp.targetContact.touchingTarget = false;
+        }
+
+        public void ResetPelvisRotation(BodyPartHinge bp, float maxAngle, float minAngle)
+        {
+            bp.rb.transform.position = bp.startingPos;
+            float randomAngle = Random.Range(minAngle, maxAngle);
+
+            bp.rb.transform.rotation = new Quaternion(startingRot.x + randomAngle, startingRot.y, startingRot.z, startingRot.w);  // this rotates the joint by the randomRotational amount relative to t he startingRot.
+
+            bp.rb.linearVelocity = Vector3.zero;
+            bp.rb.angularVelocity = Vector3.zero;
+
+            if (bp.groundContact) bp.groundContact.touchingGround = false;
+            if (bp.targetContact) bp.targetContact.touchingTarget = false;
+        }
+
         /// <summary>
         /// Set target angles for all hinge joints in this body part.
         /// Angles are normalized from -1 to 1 and mapped to joint limits.
@@ -61,6 +92,7 @@ namespace Unity.MINTNeurorobotics
                 spring.targetPosition = targetAngle;
                 joint.spring = spring;
                 joint.useSpring = true;
+                joint.useMotor = false;
 
                 if (currentTargetAngles.Count <= i)
                     currentTargetAngles.Add(targetAngle);
@@ -81,10 +113,13 @@ namespace Unity.MINTNeurorobotics
             {
                 if (joint == null) continue;
 
-                JointMotor motor = joint.motor;
-                motor.force = rawVal;
-                joint.motor = motor;
-                joint.useMotor = true;
+                JointSpring spring = joint.spring;
+                spring.spring = rawVal;
+                spring.damper = thisJdController.jointDampen;
+                joint.spring = spring;
+
+                joint.useSpring = true;
+                joint.useMotor = false;
             }
         }
     }

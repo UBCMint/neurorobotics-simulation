@@ -43,7 +43,7 @@ namespace Unity.MINTNeurorobotics
 
         void OnEnable()
         {
-            m_startingPos = transform.position;
+            m_startingPos = transform.localPosition;
             if (respawnIfTouched)
             {
                 MoveTargetToRandomPosition();
@@ -66,7 +66,7 @@ namespace Unity.MINTNeurorobotics
         {
             var newTargetPos = m_startingPos + new Vector3(Random.Range(m_startingPos.x - spawnRange, m_startingPos.x + spawnRange), m_startingPos.y, m_startingPos.z);
             newTargetPos.y = m_startingPos.y;
-            transform.position = newTargetPos;
+            transform.localPosition = newTargetPos;
         }
 
         private void OnCollisionEnter(Collision col)
