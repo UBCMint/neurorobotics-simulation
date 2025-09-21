@@ -25,6 +25,15 @@ A real-time simulation environment for testing bipedal robot joint control using
 
 ---
 
+
+## Headset Functionality
+
+September 20th:
+Headset output is used to move a sphere object bi-directionally for demonstration purposes for now.  
+How to run: Run neurofeedback.py in Assets/Python_Scripts with the BlueMuse software and then Play the simulation in Unity.   
+Minor issues: The python script for the headset crashes after about 20 seconds.
+
+
 ## Global Variables
 
 ```csharp
@@ -35,11 +44,3 @@ float mouseSensitivity = 2.0f;
 // Joint control
 Motor Force = 300.0f
 Motor Speed = 30.0f
-
-
-## Headset Functionality
-
-September 20th:
-Headset output is used to move a sphere object bi-directionally for demonstration purposes for now.
-How to run: Run neurofeedback.py in Assets/Python_Scripts with the BlueMuse software and then Play the simulation in Unity. 
-Minor issues: The python script for the headset crashes after about 20 seconds.
