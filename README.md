@@ -30,7 +30,11 @@ A real-time simulation environment for testing bipedal robot joint control using
 
 September 20th:
 Headset output is used to move a sphere object bi-directionally for demonstration purposes for now.  
-How to run: Run neurofeedback.py in Assets/Python_Scripts with the BlueMuse software and then Play the simulation in Unity.   
+How to run: 
+1. Run the BlueMuse software and start streaming on the headset.
+2. Run neurofeedback.py in Assets/Python_Scripts.
+3. Play the simulation in Unity.
+
 Minor issues: The python script for the headset crashes after about 20 seconds.
 
 
