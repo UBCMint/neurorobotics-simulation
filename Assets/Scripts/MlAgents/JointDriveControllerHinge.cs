@@ -127,9 +127,9 @@ namespace Unity.MINTNeurorobotics
     public class JointDriveControllerHinge : MonoBehaviour
     {
         [Header("Joint Drive Settings")]
-        public float maxJointSpring = 100f;
-        public float jointDampen = 5f;
-        public float maxJointForceLimit = 100f;
+        public float maxJointSpring = 1500f;
+        public float jointDampen = 600f;
+        public float maxJointForceLimit = 1800f;
 
         [HideInInspector] public Dictionary<Transform, BodyPartHinge> bodyPartsDict = new Dictionary<Transform, BodyPartHinge>();
         [HideInInspector] public List<BodyPartHinge> bodyPartsList = new List<BodyPartHinge>();
