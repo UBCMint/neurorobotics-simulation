@@ -227,6 +227,143 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 213701478}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &256489891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 256489895}
+  - component: {fileID: 256489894}
+  - component: {fileID: 256489893}
+  - component: {fileID: 256489892}
+  m_Layer: 0
+  m_Name: Temporal Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &256489892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256489891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+--- !u!81 &256489893
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256489891}
+  m_Enabled: 1
+--- !u!20 &256489894
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256489891}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &256489895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256489891}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.12158747, y: -0.7182036, z: 0.12980759, w: -0.6727184}
+  m_LocalPosition: {x: 93.21672, y: 24.524452, z: -6.888356}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &370323490
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,11 +487,11 @@ GameObject:
   - component: {fileID: 387658495}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &387658491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,6 +1087,7 @@ GameObject:
   - component: {fileID: 1069531117}
   - component: {fileID: 1069531116}
   - component: {fileID: 1069531119}
+  - component: {fileID: 1069531120}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
@@ -993,7 +1131,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069531113}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84e9449cbbb791c41be4dde78a5f0665, type: 3}
   m_Name: 
@@ -1009,7 +1147,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069531113}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
@@ -1023,7 +1161,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069531113}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b51e70931caf94340a0491984e40c3d1, type: 3}
   m_Name: 
@@ -1047,6 +1185,8 @@ MonoBehaviour:
   leftArm: {fileID: 8630182534351665738}
   rightFoot: {fileID: 8630182534050967655}
   leftFoot: {fileID: 8630182534788273097}
+  PelvisRotationMax: 0
+  PelvisRotationMin: 0
 --- !u!114 &1069531118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1054,7 +1194,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069531113}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
   m_Name: 
@@ -1089,6 +1229,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1e838121d0fb247bd1e145a25ed856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1069531120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069531113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d5e715a526e4adfa6938fbb3955333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  csvFilename: Motion.csv
+  pidControllers:
+  - {fileID: 8630182534351665743}
+  - {fileID: 8630182533940348421}
+  - {fileID: 8630182534788273102}
+  - {fileID: 8630182534050967660}
+  - {fileID: 8630182533464053360}
+  - {fileID: 0}
+  playOnStart: 1
+  useRealtimeWait: 1
 --- !u!1 &1132647018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1766,6 +1928,7 @@ GameObject:
   - component: {fileID: 8630182533440512666}
   - component: {fileID: 8630182533440512672}
   - component: {fileID: 8630182533440512673}
+  - component: {fileID: 8630182533440512674}
   m_Layer: 0
   m_Name: Tibia and Kneejoint right
   m_TagString: agent
@@ -1792,6 +1955,7 @@ GameObject:
   - component: {fileID: 8630182533464053357}
   - component: {fileID: 8630182533464053358}
   - component: {fileID: 8630182533464053359}
+  - component: {fileID: 8630182533464053360}
   m_Layer: 0
   m_Name: Tibia and Kneejoint Left
   m_TagString: agent
@@ -1859,6 +2023,7 @@ GameObject:
   - component: {fileID: 8630182533940348418}
   - component: {fileID: 8630182533940348419}
   - component: {fileID: 8630182533940348420}
+  - component: {fileID: 8630182533940348421}
   m_Layer: 0
   m_Name: Arm Right (Femur Horn Connection)
   m_TagString: agent
@@ -1881,6 +2046,7 @@ GameObject:
   - component: {fileID: 8630182534050967657}
   - component: {fileID: 8630182534050967658}
   - component: {fileID: 8630182534050967659}
+  - component: {fileID: 8630182534050967660}
   m_Layer: 0
   m_Name: Foot Right (Servo Holder)
   m_TagString: agent
@@ -1948,6 +2114,7 @@ GameObject:
   - component: {fileID: 8630182534351665740}
   - component: {fileID: 8630182534351665741}
   - component: {fileID: 8630182534351665742}
+  - component: {fileID: 8630182534351665743}
   m_Layer: 0
   m_Name: Arm Left (Femur Horn Connection)
   m_TagString: agent
@@ -1970,6 +2137,7 @@ GameObject:
   - component: {fileID: 8630182534788273099}
   - component: {fileID: 8630182534788273100}
   - component: {fileID: 8630182534788273101}
+  - component: {fileID: 8630182534788273102}
   m_Layer: 0
   m_Name: Foot Left (Servo Holder)
   m_TagString: agent
@@ -2836,8 +3004,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  agentDoneOnGroundContact: 1
-  penalizeGroundContact: 1
+  agentDoneOnGroundContact: 0
+  penalizeGroundContact: 0
   groundContactPenalty: -1
   touchingGround: 0
 --- !u!4 &8630182533440512664
@@ -3018,10 +3186,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  agentDoneOnGroundContact: 1
-  penalizeGroundContact: 1
+  agentDoneOnGroundContact: 0
+  penalizeGroundContact: 0
   groundContactPenalty: -1
   touchingGround: 0
+--- !u!114 &8630182533440512674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546817819680431712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a156bbe49b94576a083803ac788c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Kp: 100
+  Ki: 10
+  Kd: 5
+  maxTorque: 1000
+  maxIntegral: 500
+  targetDegrees: 0
+  printForDebug: 1
 --- !u!4 &8630182533464053349
 Transform:
   m_ObjectHideFlags: 0
@@ -3200,8 +3387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  agentDoneOnGroundContact: 1
-  penalizeGroundContact: 1
+  agentDoneOnGroundContact: 0
+  penalizeGroundContact: 0
   groundContactPenalty: -1
   touchingGround: 0
 --- !u!114 &8630182533464053359
@@ -3228,6 +3415,25 @@ MonoBehaviour:
   strengthStepPerSecond: 0.8
   smoothAngles: 1
   angleLerpSpeed: 6
+--- !u!114 &8630182533464053360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546817819695164061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a156bbe49b94576a083803ac788c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Kp: 100
+  Ki: 10
+  Kd: 5
+  maxTorque: 1000
+  maxIntegral: 500
+  targetDegrees: 0
+  printForDebug: 0
 --- !u!4 &8630182533940348415
 Transform:
   m_ObjectHideFlags: 0
@@ -3343,10 +3549,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  agentDoneOnGroundContact: 1
-  penalizeGroundContact: 1
+  agentDoneOnGroundContact: 0
+  penalizeGroundContact: 0
   groundContactPenalty: -1
   touchingGround: 0
+--- !u!114 &8630182533940348421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546817820254337287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a156bbe49b94576a083803ac788c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Kp: 100
+  Ki: 10
+  Kd: 5
+  maxTorque: 1000
+  maxIntegral: 500
+  targetDegrees: 0
+  printForDebug: 0
 --- !u!4 &8630182533991206293
 Transform:
   m_ObjectHideFlags: 0
@@ -3501,8 +3726,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  agentDoneOnGroundContact: 1
-  penalizeGroundContact: 1
+  agentDoneOnGroundContact: 0
+  penalizeGroundContact: 0
   groundContactPenalty: -1
   touchingGround: 0
 --- !u!4 &8630182534050967655
@@ -3624,6 +3849,25 @@ MonoBehaviour:
   penalizeGroundContact: 0
   groundContactPenalty: 0
   touchingGround: 0
+--- !u!114 &8630182534050967660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546817820684717215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a156bbe49b94576a083803ac788c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Kp: 100
+  Ki: 10
+  Kd: 5
+  maxTorque: 1000
+  maxIntegral: 500
+  targetDegrees: 0
+  printForDebug: 0
 --- !u!4 &8630182534351665738
 Transform:
   m_ObjectHideFlags: 0
@@ -3739,10 +3983,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  agentDoneOnGroundContact: 1
-  penalizeGroundContact: 1
+  agentDoneOnGroundContact: 0
+  penalizeGroundContact: 0
   groundContactPenalty: -1
   touchingGround: 0
+--- !u!114 &8630182534351665743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546817820917286578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a156bbe49b94576a083803ac788c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Kp: 100
+  Ki: 10
+  Kd: 5
+  maxTorque: 1000
+  maxIntegral: 500
+  targetDegrees: 0
+  printForDebug: 0
 --- !u!4 &8630182534448509164
 Transform:
   m_ObjectHideFlags: 0
@@ -3835,8 +4098,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  agentDoneOnGroundContact: 1
-  penalizeGroundContact: 1
+  agentDoneOnGroundContact: 0
+  penalizeGroundContact: 0
   groundContactPenalty: -1
   touchingGround: 0
 --- !u!4 &8630182534514769722
@@ -3957,8 +4220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  agentDoneOnGroundContact: 1
-  penalizeGroundContact: 1
+  agentDoneOnGroundContact: 0
+  penalizeGroundContact: 0
   groundContactPenalty: -1
   touchingGround: 0
 --- !u!4 &8630182534696549516
@@ -4053,8 +4316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  agentDoneOnGroundContact: 1
-  penalizeGroundContact: 1
+  agentDoneOnGroundContact: 0
+  penalizeGroundContact: 0
   groundContactPenalty: -1
   touchingGround: 0
 --- !u!4 &8630182534732564946
@@ -4211,8 +4474,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  agentDoneOnGroundContact: 1
-  penalizeGroundContact: 1
+  agentDoneOnGroundContact: 0
+  penalizeGroundContact: 0
   groundContactPenalty: -1
   touchingGround: 0
 --- !u!4 &8630182534788273097
@@ -4334,6 +4597,25 @@ MonoBehaviour:
   penalizeGroundContact: 0
   groundContactPenalty: 0
   touchingGround: 0
+--- !u!114 &8630182534788273102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546817821019647793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a156bbe49b94576a083803ac788c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Kp: 100
+  Ki: 10
+  Kd: 5
+  maxTorque: 1000
+  maxIntegral: 500
+  targetDegrees: 0
+  printForDebug: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4345,3 +4627,4 @@ SceneRoots:
   - {fileID: 1797575141}
   - {fileID: 2089716919}
   - {fileID: 1037364466}
+  - {fileID: 256489895}
