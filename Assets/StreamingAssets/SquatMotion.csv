@@ -1,0 +1,19 @@
+leftFemur,rightFemur,leftFoot,rightFoot,leftKnee,rightKnee,wait
+0,0,0,0,0,0,2000
+,84,-120,-120,-120,-120,2000
+0,0,0,0,0,0,2000
+-120,-120,-120,-120,-120,-120,2000
+0,0,0,0,0,0,2000
+-120,-120,-120,-120,-120,-120,2000
+0,0,0,0,0,0,2000
+-120,-120,-120,-120,-120,-120,2000
+0,0,0,0,0,0,2000
+-120,-120,-120,-120,-120,-120,2000
+0,0,0,0,0,0,2000
+-120,-120,-120,-120,-120,-120,2000
+
+1.47 rad to 0.6
+84, 34
+// guess: knee (leftFoot, rightFoot) should be around 84 /34 degrees
+ankle should be left at around resting angle
+body should be slightly slanted forward
