@@ -16,6 +16,7 @@ public class RobotMovement : MonoBehaviour
     [SerializeField] private ArticulationBody rightFoot;
 
     [Header("Joint Configurations")]
+    [SerializeField] private float jointSpeed = 100f;
     [SerializeField] private float targetAngle = 45f;
     [SerializeField] private float femurStiffness = 500f;
     [SerializeField] private float tibiaStiffness = 200f;
@@ -230,7 +231,6 @@ public class RobotMovement : MonoBehaviour
                     SetTargetAngle(jointDict[headerVal], lineFloatRes);
                     yield return new WaitForSeconds(2.0f);
                 }
-
             }
         }
     }
@@ -239,12 +239,14 @@ public class RobotMovement : MonoBehaviour
     {
         if (body == null || body.dofCount == 0) return;
 
+        float step = jointSpeed * Time.fixedDeltaTime;
+
         // drive.target expects DEGREES, not radians!
         if (body.twistLock == ArticulationDofLock.LimitedMotion || body.twistLock == ArticulationDofLock.FreeMotion)
         {
             ArticulationDrive drive = body.xDrive;
             drive.driveType = ArticulationDriveType.Target;
-            drive.target = angleDegrees;
+            drive.target = Mathf.MoveTowards(drive.target, angleDegrees, step);
             body.xDrive = drive;
         }
 
@@ -252,7 +254,7 @@ public class RobotMovement : MonoBehaviour
         {
             ArticulationDrive drive = body.yDrive;
             drive.driveType = ArticulationDriveType.Target;
-            drive.target = angleDegrees;
+            drive.target = Mathf.MoveTowards(drive.target, angleDegrees, step);
             body.yDrive = drive;
         }
 
@@ -260,7 +262,7 @@ public class RobotMovement : MonoBehaviour
         {
             ArticulationDrive drive = body.zDrive;
             drive.driveType = ArticulationDriveType.Target;
-            drive.target = angleDegrees;
+            drive.target = Mathf.MoveTowards(drive.target, angleDegrees, step);
             body.zDrive = drive;
         }
     }

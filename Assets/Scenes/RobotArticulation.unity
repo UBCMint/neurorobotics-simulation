@@ -625,6 +625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 270761079}
   - component: {fileID: 270761080}
+  - component: {fileID: 270761081}
   m_Layer: 0
   m_Name: leftTibia
   m_TagString: Untagged
@@ -716,6 +717,27 @@ ArticulationBody:
   m_Immovable: 0
   m_UseGravity: 1
   m_CollisionDetectionMode: 0
+--- !u!114 &270761081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270761078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf80015e27433924188b97b895d0866c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limb: {fileID: 270761080}
+  randomizationRange: 45
+  xDriveAvailable: 1
+  yDriveAvailable: 0
+  zDriveAvailable: 0
+  jointSpeed: 100
+  forceLimit: 10000
+  stiffness: 100
+  damping: 50
 --- !u!1 &286465854
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 286465855}
   - component: {fileID: 286465856}
+  - component: {fileID: 286465857}
   m_Layer: 0
   m_Name: leftFemur
   m_TagString: leftFemur
@@ -817,6 +840,27 @@ ArticulationBody:
   m_Immovable: 0
   m_UseGravity: 1
   m_CollisionDetectionMode: 0
+--- !u!114 &286465857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286465854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf80015e27433924188b97b895d0866c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limb: {fileID: 286465856}
+  randomizationRange: 45
+  xDriveAvailable: 1
+  yDriveAvailable: 0
+  zDriveAvailable: 0
+  jointSpeed: 100
+  forceLimit: 10000
+  stiffness: 100
+  damping: 50
 --- !u!1 &298502000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,6 +1102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 453995029}
   - component: {fileID: 453995030}
+  - component: {fileID: 453995031}
   m_Layer: 0
   m_Name: leftFeet
   m_TagString: Untagged
@@ -1148,6 +1193,27 @@ ArticulationBody:
   m_Immovable: 0
   m_UseGravity: 1
   m_CollisionDetectionMode: 0
+--- !u!114 &453995031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453995028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf80015e27433924188b97b895d0866c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limb: {fileID: 453995030}
+  randomizationRange: 45
+  xDriveAvailable: 1
+  yDriveAvailable: 0
+  zDriveAvailable: 0
+  jointSpeed: 100
+  forceLimit: 10000
+  stiffness: 100
+  damping: 50
 --- !u!1001 &455736980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2296,8 +2362,8 @@ Transform:
   m_GameObject: {fileID: 679396079}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 18.2, z: -39.6}
-  m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
+  m_LocalPosition: {x: 0, y: 18.2, z: -0.5212567}
+  m_LocalScale: {x: 0.0019916028, y: 0.099999994, z: 0.0013163047}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1518200409}
@@ -2314,7 +2380,7 @@ Transform:
   - {fileID: 1006201993}
   - {fileID: 1899422084}
   - {fileID: 1869158733}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 949577438}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &679469581
 GameObject:
@@ -3256,7 +3322,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50.21081, y: 1, z: 75.970245}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 679396084}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &951032944 stripped
@@ -5045,6 +5112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1520701179}
   - component: {fileID: 1520701180}
+  - component: {fileID: 1520701181}
   m_Layer: 0
   m_Name: rightTibia
   m_TagString: Untagged
@@ -5136,6 +5204,27 @@ ArticulationBody:
   m_Immovable: 0
   m_UseGravity: 1
   m_CollisionDetectionMode: 0
+--- !u!114 &1520701181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520701178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf80015e27433924188b97b895d0866c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limb: {fileID: 1520701180}
+  randomizationRange: 45
+  xDriveAvailable: 1
+  yDriveAvailable: 0
+  zDriveAvailable: 0
+  jointSpeed: 100
+  forceLimit: 10000
+  stiffness: 100
+  damping: 50
 --- !u!1 &1521203777
 GameObject:
   m_ObjectHideFlags: 0
@@ -5340,6 +5429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1580622284}
   - component: {fileID: 1580622285}
+  - component: {fileID: 1580622286}
   m_Layer: 0
   m_Name: rightFeet
   m_TagString: Untagged
@@ -5430,6 +5520,27 @@ ArticulationBody:
   m_Immovable: 0
   m_UseGravity: 1
   m_CollisionDetectionMode: 0
+--- !u!114 &1580622286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580622283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf80015e27433924188b97b895d0866c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limb: {fileID: 1580622285}
+  randomizationRange: 45
+  xDriveAvailable: 1
+  yDriveAvailable: 0
+  zDriveAvailable: 0
+  jointSpeed: 100
+  forceLimit: 10000
+  stiffness: 100
+  damping: 50
 --- !u!1 &1626410953
 GameObject:
   m_ObjectHideFlags: 0
@@ -5441,6 +5552,9 @@ GameObject:
   - component: {fileID: 1626410954}
   - component: {fileID: 1626410955}
   - component: {fileID: 1626410956}
+  - component: {fileID: 1626410958}
+  - component: {fileID: 1626410957}
+  - component: {fileID: 1626410959}
   m_Layer: 0
   m_Name: Pelvis
   m_TagString: Untagged
@@ -5532,7 +5646,7 @@ ArticulationBody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_Immovable: 1
+  m_Immovable: 0
   m_UseGravity: 1
   m_CollisionDetectionMode: 0
 --- !u!114 &1626410956
@@ -5547,13 +5661,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b15af9d013722f64aa2742ea4b81778a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  csvFile: {fileID: 0}
+  csvFile: {fileID: 4900000, guid: 9623ad667d5f1a6488a3954105ba3357, type: 3}
   leftFemur: {fileID: 286465856}
   rightFemur: {fileID: 1807355759}
   leftTibia: {fileID: 270761080}
   rightTibia: {fileID: 1520701180}
   leftFoot: {fileID: 453995030}
   rightFoot: {fileID: 1580622285}
+  jointSpeed: 100
   targetAngle: 45
   femurStiffness: 500
   tibiaStiffness: 200
@@ -5563,6 +5678,73 @@ MonoBehaviour:
   feetDamping: 50
   forceLimit: 100000
   jointResetMode: 1
+--- !u!114 &1626410957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626410953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7cb9431f2a8c6b4db874edf0aa3d4d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 5000
+  pelvis: {fileID: 1626410955}
+  leftFemur: {fileID: 286465857}
+  rightFemur: {fileID: 1807355760}
+  leftTibia: {fileID: 270761081}
+  rightTibia: {fileID: 1520701181}
+  leftFoot: {fileID: 453995031}
+  rightFoot: {fileID: 1580622286}
+--- !u!114 &1626410958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626410953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 10
+    NumStackedVectorObservations: 1
+    m_ActionSpec:
+      m_NumContinuousActions: 6
+      BranchSizes: 
+    VectorActionSize: 06000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 1
+    hasUpgradedBrainParametersWithActionSpec: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: MintRobotBalance
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
+--- !u!114 &1626410959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626410953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 5
+  TakeActionsBetweenDecisions: 1
 --- !u!1001 &1628826768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5726,6 +5908,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1807355758}
   - component: {fileID: 1807355759}
+  - component: {fileID: 1807355760}
   m_Layer: 0
   m_Name: rightFemur
   m_TagString: Untagged
@@ -5817,6 +6000,27 @@ ArticulationBody:
   m_Immovable: 0
   m_UseGravity: 1
   m_CollisionDetectionMode: 0
+--- !u!114 &1807355760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807355757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf80015e27433924188b97b895d0866c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limb: {fileID: 1807355759}
+  randomizationRange: 45
+  xDriveAvailable: 1
+  yDriveAvailable: 0
+  zDriveAvailable: 0
+  jointSpeed: 100
+  forceLimit: 10000
+  stiffness: 100
+  damping: 50
 --- !u!1 &1869158732
 GameObject:
   m_ObjectHideFlags: 0
@@ -6901,7 +7105,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 952012703}
   - {fileID: 298502002}
-  - {fileID: 679396084}
   - {fileID: 949577438}
   - {fileID: 1626410954}
   - {fileID: 1149738338}
