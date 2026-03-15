@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,6 +29,21 @@ public class RobotMovement : MonoBehaviour
     [Header("Joint Resetting")]
     [SerializeField] private bool jointResetMode = false;
 
+    [Header("Arduino ↔ Unity calibration (per joint)")]
+    [Tooltip("Arduino angle that corresponds to 0 degrees in Unity for this joint")]
+    [SerializeField] private float leftFemurArduinoAngleAtUnityZero = 0f;
+    [SerializeField] private float rightFemurArduinoAngleAtUnityZero = 0f;
+    [SerializeField] private float leftTibiaArduinoAngleAtUnityZero = 0f;
+    [SerializeField] private float rightTibiaArduinoAngleAtUnityZero = 0f;
+    [SerializeField] private float leftFootArduinoAngleAtUnityZero = 0f;
+    [SerializeField] private float rightFootArduinoAngleAtUnityZero = 0f;
+    [Tooltip("True = increasing Unity angle corresponds to increasing Arduino angle")]
+    [SerializeField] private bool leftFemurUnityIncreaseMatchesArduino = true;
+    [SerializeField] private bool rightFemurUnityIncreaseMatchesArduino = true;
+    [SerializeField] private bool leftTibiaUnityIncreaseMatchesArduino = true;
+    [SerializeField] private bool rightTibiaUnityIncreaseMatchesArduino = true;
+    [SerializeField] private bool leftFootUnityIncreaseMatchesArduino = true;
+    [SerializeField] private bool rightFootUnityIncreaseMatchesArduino = true;
 
     private Dictionary<string, ArticulationBody> jointDict;
 
@@ -295,6 +311,73 @@ public class RobotMovement : MonoBehaviour
                 targetDegrees = body.zDrive.target;
             
             Debug.Log($"{name}: Current={currentAngleDegrees:F2}°, Target={targetDegrees:F2}°, Error={Mathf.Abs(targetDegrees - currentAngleDegrees):F2}°");
+        }
+    }
+
+    /// <summary>
+    /// Converts an angle from Arduino space to Unity space for the given joint.
+    /// Uses per-joint calibration: Arduino angle at Unity zero and direction flag (whether Unity increase matches Arduino increase).
+    /// Motion in Unity is along a single DOF (X, Y, or Z) determined by the joint's articulation body.
+    /// </summary>
+    /// <param name="jointName">leftFemur, rightFemur, leftTibia, rightTibia, leftFoot, rightFoot</param>
+    /// <param name="arduinoAngleDegrees">Angle in Arduino degrees</param>
+    /// <returns>Angle in Unity degrees, or float.NaN if joint not found</returns>
+    public float ArduinoToUnityAngle(string jointName, float arduinoAngleDegrees)
+    {
+        if (!GetArduinoCalibration(jointName, out float arduinoAngleAtUnityZero, out bool unityIncreaseMatchesArduino))
+            return float.NaN;
+        float sign = unityIncreaseMatchesArduino ? 1f : -1f;
+        return (arduinoAngleDegrees - arduinoAngleAtUnityZero) * sign;
+    }
+
+    /// <summary>
+    /// Converts an angle from Unity space to Arduino space for the given joint.
+    /// </summary>
+    public float UnityToArduinoAngle(string jointName, float unityAngleDegrees)
+    {
+        if (!GetArduinoCalibration(jointName, out float arduinoAngleAtUnityZero, out bool unityIncreaseMatchesArduino))
+            return float.NaN;
+        float sign = unityIncreaseMatchesArduino ? 1f : -1f;
+        return arduinoAngleAtUnityZero + unityAngleDegrees * sign;
+    }
+
+    /// <summary>
+    /// Returns which axis (X, Y, or Z) the joint's motion is along in Unity (single DOF).
+    /// </summary>
+    public string GetJointMotionAxis(string jointName)
+    {
+        if (jointDict == null || !jointDict.TryGetValue(jointName, out ArticulationBody body) || body == null)
+            return null;
+        if (body.twistLock == ArticulationDofLock.LimitedMotion || body.twistLock == ArticulationDofLock.FreeMotion)
+            return "X";
+        if (body.swingYLock == ArticulationDofLock.LimitedMotion || body.swingYLock == ArticulationDofLock.FreeMotion)
+            return "Y";
+        if (body.swingZLock == ArticulationDofLock.LimitedMotion || body.swingZLock == ArticulationDofLock.FreeMotion)
+            return "Z";
+        return null;
+    }
+
+    private bool GetArduinoCalibration(string jointName, out float arduinoAngleAtUnityZero, out bool unityIncreaseMatchesArduino)
+    {
+        arduinoAngleAtUnityZero = 0f;
+        unityIncreaseMatchesArduino = true;
+
+        switch (jointName)
+        {
+            case "leftFemur":
+                arduinoAngleAtUnityZero = leftFemurArduinoAngleAtUnityZero; unityIncreaseMatchesArduino = leftFemurUnityIncreaseMatchesArduino; return true;
+            case "rightFemur":
+                arduinoAngleAtUnityZero = rightFemurArduinoAngleAtUnityZero; unityIncreaseMatchesArduino = rightFemurUnityIncreaseMatchesArduino; return true;
+            case "leftTibia":
+                arduinoAngleAtUnityZero = leftTibiaArduinoAngleAtUnityZero; unityIncreaseMatchesArduino = leftTibiaUnityIncreaseMatchesArduino; return true;
+            case "rightTibia":
+                arduinoAngleAtUnityZero = rightTibiaArduinoAngleAtUnityZero; unityIncreaseMatchesArduino = rightTibiaUnityIncreaseMatchesArduino; return true;
+            case "leftFoot":
+                arduinoAngleAtUnityZero = leftFootArduinoAngleAtUnityZero; unityIncreaseMatchesArduino = leftFootUnityIncreaseMatchesArduino; return true;
+            case "rightFoot":
+                arduinoAngleAtUnityZero = rightFootArduinoAngleAtUnityZero; unityIncreaseMatchesArduino = rightFootUnityIncreaseMatchesArduino; return true;
+            default:
+                return false;
         }
     }
 }
