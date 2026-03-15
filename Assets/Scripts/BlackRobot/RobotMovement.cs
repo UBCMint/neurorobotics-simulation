@@ -275,13 +275,7 @@ public class RobotMovement : MonoBehaviour
                 }
                 else if (headerVal == "wait")
                 {
-                    if (float.TryParse(headerVal, out float floatResult))
-                    {
-                        yield return new WaitForSeconds(floatResult / 1000.0f);
-                    } else
-                    {
-                        yield return null;
-                    }
+                    yield return new WaitForSeconds(lineFloatRes / 1000.0f);
                 }
                 else
                 {
@@ -295,7 +289,7 @@ public class RobotMovement : MonoBehaviour
                             angleToApply = unityAngle;
                     }
                     SetTargetAngle(jointDict[headerVal], angleToApply);
-                    yield return new WaitForSeconds(2.0f);
+                    // yield return new WaitForSeconds(2.0f);
                 }
 
             }
