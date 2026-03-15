@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using UnityEngine;
 
 public class RobotMovement : MonoBehaviour
@@ -312,6 +314,84 @@ public class RobotMovement : MonoBehaviour
             
             Debug.Log($"{name}: Current={currentAngleDegrees:F2}°, Target={targetDegrees:F2}°, Error={Mathf.Abs(targetDegrees - currentAngleDegrees):F2}°");
         }
+    }
+
+    /// <summary>
+    /// Records the angle of all 6 joints (with respect to their set points) to a CSV over a given duration.
+    /// </summary>
+    /// <param name="filePath">Full path for the output CSV. If null or empty, uses Application.persistentDataPath + "/joint_positions_YYYYMMdd_HHmmss.csv"</param>
+    /// <param name="durationSeconds">How long to record (simulation time).</param>
+    /// <param name="recordIntervalSeconds">How often to record one frame (simulation time). e.g. 0.02 for 50 Hz.</param>
+    public void StoreJointPosition(string filePath, float durationSeconds, float recordIntervalSeconds)
+    {
+        if (durationSeconds <= 0f || recordIntervalSeconds <= 0f)
+        {
+            Debug.LogWarning("StoreJointPosition: duration and recordInterval must be positive.");
+            return;
+        }
+        StartCoroutine(StoreJointPositionCoroutine(filePath, durationSeconds, recordIntervalSeconds));
+    }
+
+    private IEnumerator StoreJointPositionCoroutine(string filePath, float durationSeconds, float recordIntervalSeconds)
+    {
+        if (string.IsNullOrEmpty(filePath))
+            filePath = Path.Combine(Application.persistentDataPath, $"joint_positions_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
+
+        float simulationSpeed = Time.timeScale;
+        float recordingFrequencyHz = 1f / recordIntervalSeconds;
+
+        var lines = new List<string>();
+        // Metadata
+        lines.Add("# joint_position_recording");
+        lines.Add($"# simulation_speed,{simulationSpeed.ToString(CultureInfo.InvariantCulture)}");
+        lines.Add($"# record_interval_sec,{recordIntervalSeconds.ToString(CultureInfo.InvariantCulture)}");
+        lines.Add($"# record_frequency_hz,{recordingFrequencyHz.ToString(CultureInfo.InvariantCulture)}");
+        lines.Add($"# duration_sec,{durationSeconds.ToString(CultureInfo.InvariantCulture)}");
+        lines.Add("# frame = 0-based index from start of recording; angles = degrees relative to 0° (current joint angle)");
+        lines.Add("frame,leftFemur,rightFemur,leftTibia,rightTibia,leftFoot,rightFoot");
+
+        int frame = 0;
+        float elapsed = 0f;
+
+        while (elapsed < durationSeconds)
+        {
+            float lf = GetAngleDegrees(leftFemur);
+            float rf = GetAngleDegrees(rightFemur);
+            float lt = GetAngleDegrees(leftTibia);
+            float rt = GetAngleDegrees(rightTibia);
+            float lfoot = GetAngleDegrees(leftFoot);
+            float rfoot = GetAngleDegrees(rightFoot);
+
+            lines.Add(string.Format(CultureInfo.InvariantCulture,
+                "{0},{1},{2},{3},{4},{5},{6}",
+                frame, lf, rf, lt, rt, lfoot, rfoot));
+
+            frame++;
+            elapsed += recordIntervalSeconds;
+            yield return new WaitForSeconds(recordIntervalSeconds);
+        }
+
+        try
+        {
+            File.WriteAllLines(filePath, lines);
+            Debug.Log($"StoreJointPosition: wrote {frame} frames to {filePath}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"StoreJointPosition: failed to write CSV: {e.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Returns current joint angle in degrees.
+    /// </summary>
+    private float GetAngleDegrees(ArticulationBody body)
+    {
+        if (body == null || body.dofCount == 0 || body.jointPosition.dofCount == 0)
+            return float.NaN;
+
+        float currentDegrees = body.jointPosition[0] * Mathf.Rad2Deg;
+        return currentDegrees;
     }
 
     /// <summary>
