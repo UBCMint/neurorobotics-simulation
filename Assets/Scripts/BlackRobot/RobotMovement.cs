@@ -5,6 +5,24 @@ using System.Globalization;
 using System.IO;
 using UnityEngine;
 
+[Serializable]
+public class JointCalibrationEntry
+{
+    public float arduinoAngleAtUnityZero;
+    public bool unityIncreaseMatchesArduino;
+}
+
+[Serializable]
+public class ArduinoUnityCalibrationData
+{
+    public JointCalibrationEntry leftFemur;
+    public JointCalibrationEntry rightFemur;
+    public JointCalibrationEntry leftTibia;
+    public JointCalibrationEntry rightTibia;
+    public JointCalibrationEntry leftFoot;
+    public JointCalibrationEntry rightFoot;
+}
+
 public class RobotMovement : MonoBehaviour
 {
     [Header("Files")]
@@ -39,27 +57,14 @@ public class RobotMovement : MonoBehaviour
     [Header("Joint Resetting")]
     [SerializeField] private bool jointResetMode = false;
 
-    [Header("Arduino ↔ Unity calibration (per joint)")]
-    [Tooltip("Arduino angle that corresponds to 0 degrees in Unity for this joint")]
-    [SerializeField] private float leftFemurArduinoAngleAtUnityZero = 0f;
-    [SerializeField] private float rightFemurArduinoAngleAtUnityZero = 0f;
-    [SerializeField] private float leftTibiaArduinoAngleAtUnityZero = 0f;
-    [SerializeField] private float rightTibiaArduinoAngleAtUnityZero = 0f;
-    [SerializeField] private float leftFootArduinoAngleAtUnityZero = 0f;
-    [SerializeField] private float rightFootArduinoAngleAtUnityZero = 0f;
-    [Tooltip("True = increasing Unity angle corresponds to increasing Arduino angle")]
-    [SerializeField] private bool leftFemurUnityIncreaseMatchesArduino = true;
-    [SerializeField] private bool rightFemurUnityIncreaseMatchesArduino = true;
-    [SerializeField] private bool leftTibiaUnityIncreaseMatchesArduino = true;
-    [SerializeField] private bool rightTibiaUnityIncreaseMatchesArduino = true;
-    [SerializeField] private bool leftFootUnityIncreaseMatchesArduino = true;
-    [SerializeField] private bool rightFootUnityIncreaseMatchesArduino = true;
-
+    private const string ArduinoUnityCalibrationResourceName = "ArduinoUnityCalibration";
     private Dictionary<string, ArticulationBody> jointDict;
+    private Dictionary<string, JointCalibrationEntry> arduinoCalibrationByJoint;
 
     private void Start()
     {
         CreateJointDictionary();
+        LoadArduinoUnityCalibration();
 
         // Initialize drives for POSITION control
         InitializeDrive(leftFemur, femurStiffness, femurDamping);
@@ -84,6 +89,32 @@ public class RobotMovement : MonoBehaviour
         jointDict["rightTibia"] = rightTibia;
         jointDict["leftFoot"] = leftFoot;
         jointDict["rightFoot"] = rightFoot;
+    }
+
+    private void LoadArduinoUnityCalibration()
+    {
+        arduinoCalibrationByJoint = new Dictionary<string, JointCalibrationEntry>();
+
+        TextAsset asset = Resources.Load<TextAsset>(ArduinoUnityCalibrationResourceName);
+        if (asset == null)
+        {
+            Debug.LogWarning($"RobotMovement: Arduino/Unity calibration resource '{ArduinoUnityCalibrationResourceName}' not found in Resources. Using defaults (0°, direction match true).");
+            return;
+        }
+
+        ArduinoUnityCalibrationData data = JsonUtility.FromJson<ArduinoUnityCalibrationData>(asset.text);
+        if (data == null)
+        {
+            Debug.LogWarning("RobotMovement: Failed to parse Arduino/Unity calibration JSON. Using defaults.");
+            return;
+        }
+
+        if (data.leftFemur != null) arduinoCalibrationByJoint["leftFemur"] = data.leftFemur;
+        if (data.rightFemur != null) arduinoCalibrationByJoint["rightFemur"] = data.rightFemur;
+        if (data.leftTibia != null) arduinoCalibrationByJoint["leftTibia"] = data.leftTibia;
+        if (data.rightTibia != null) arduinoCalibrationByJoint["rightTibia"] = data.rightTibia;
+        if (data.leftFoot != null) arduinoCalibrationByJoint["leftFoot"] = data.leftFoot;
+        if (data.rightFoot != null) arduinoCalibrationByJoint["rightFoot"] = data.rightFoot;
     }
 
     private void InitializeDrive(ArticulationBody body, float stiffness, float damping)
@@ -476,22 +507,12 @@ public class RobotMovement : MonoBehaviour
         arduinoAngleAtUnityZero = 0f;
         unityIncreaseMatchesArduino = true;
 
-        switch (jointName)
+        if (arduinoCalibrationByJoint != null && arduinoCalibrationByJoint.TryGetValue(jointName, out JointCalibrationEntry entry))
         {
-            case "leftFemur":
-                arduinoAngleAtUnityZero = leftFemurArduinoAngleAtUnityZero; unityIncreaseMatchesArduino = leftFemurUnityIncreaseMatchesArduino; return true;
-            case "rightFemur":
-                arduinoAngleAtUnityZero = rightFemurArduinoAngleAtUnityZero; unityIncreaseMatchesArduino = rightFemurUnityIncreaseMatchesArduino; return true;
-            case "leftTibia":
-                arduinoAngleAtUnityZero = leftTibiaArduinoAngleAtUnityZero; unityIncreaseMatchesArduino = leftTibiaUnityIncreaseMatchesArduino; return true;
-            case "rightTibia":
-                arduinoAngleAtUnityZero = rightTibiaArduinoAngleAtUnityZero; unityIncreaseMatchesArduino = rightTibiaUnityIncreaseMatchesArduino; return true;
-            case "leftFoot":
-                arduinoAngleAtUnityZero = leftFootArduinoAngleAtUnityZero; unityIncreaseMatchesArduino = leftFootUnityIncreaseMatchesArduino; return true;
-            case "rightFoot":
-                arduinoAngleAtUnityZero = rightFootArduinoAngleAtUnityZero; unityIncreaseMatchesArduino = rightFootUnityIncreaseMatchesArduino; return true;
-            default:
-                return false;
+            arduinoAngleAtUnityZero = entry.arduinoAngleAtUnityZero;
+            unityIncreaseMatchesArduino = entry.unityIncreaseMatchesArduino;
+            return true;
         }
+        return jointDict != null && jointDict.ContainsKey(jointName);
     }
 }

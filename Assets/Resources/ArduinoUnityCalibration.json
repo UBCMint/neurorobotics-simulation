@@ -1,0 +1,26 @@
+{
+  "leftFemur": {
+    "arduinoAngleAtUnityZero": 90,
+    "unityIncreaseMatchesArduino": true
+  },
+  "rightFemur": {
+    "arduinoAngleAtUnityZero": 0,
+    "unityIncreaseMatchesArduino": false
+  },
+  "leftTibia": {
+    "arduinoAngleAtUnityZero": 70,
+    "unityIncreaseMatchesArduino": false
+  },
+  "rightTibia": {
+    "arduinoAngleAtUnityZero": 0,
+    "unityIncreaseMatchesArduino": false
+  },
+  "leftFoot": {
+    "arduinoAngleAtUnityZero": 90,
+    "unityIncreaseMatchesArduino": false
+  },
+  "rightFoot": {
+    "arduinoAngleAtUnityZero": 0,
+    "unityIncreaseMatchesArduino": false
+  }
+}
