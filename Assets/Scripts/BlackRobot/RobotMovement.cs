@@ -284,7 +284,7 @@ public class RobotMovement : MonoBehaviour
         if (durationSeconds <= 0f || recordIntervalSeconds <= 0f)
         {
             Debug.LogWarning("RecordJointPositionsToCsvCoroutine: duration and recordInterval must be positive.");
-            return;
+            yield break;
         }
 
         recordIntervalSeconds = Mathf.Max(0.001f, recordIntervalSeconds);
@@ -309,14 +309,8 @@ public class RobotMovement : MonoBehaviour
         float elapsed = 0f;
         string[] jointNames = { "leftFemur", "rightFemur", "leftTibia", "rightTibia", "leftFoot", "rightFoot" };
 
-        bool shouldContinue()
-        {
-            if (runUntilCsvComplete)
-                return !csvParsingComplete;
-            return elapsed < durationSeconds.Value;
-        }
-
-        while (shouldContinue())
+        while ((runUntilCsvComplete && !csvParsingComplete) || 
+               (!runUntilCsvComplete && elapsed < durationSeconds.Value))
         {
             float lf = GetAngleDegrees(leftFemur);
             float rf = GetAngleDegrees(rightFemur);
