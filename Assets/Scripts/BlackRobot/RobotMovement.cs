@@ -9,6 +9,8 @@ public class RobotMovement : MonoBehaviour
 {
     [Header("Files")]
     [SerializeField] private TextAsset csvFile;
+    [Tooltip("If true: input CSV angles are treated as Arduino angles (converted to Unity when applying). StoreJointPosition output is converted from Unity back to Arduino angles.")]
+    [SerializeField] private bool treatInputCsvAsArduinoAngles = false;
 
     [Header("Bodypart Joints")]
     [SerializeField] private ArticulationBody leftFemur;
@@ -245,7 +247,14 @@ public class RobotMovement : MonoBehaviour
                 {
                     Debug.Log(headerVal + ": " + lineFloatRes);
 
-                    SetTargetAngle(jointDict[headerVal], lineFloatRes);
+                    float angleToApply = lineFloatRes;
+                    if (treatInputCsvAsArduinoAngles)
+                    {
+                        float unityAngle = ArduinoToUnityAngle(headerVal, lineFloatRes);
+                        if (!float.IsNaN(unityAngle))
+                            angleToApply = unityAngle;
+                    }
+                    SetTargetAngle(jointDict[headerVal], angleToApply);
                     yield return new WaitForSeconds(2.0f);
                 }
 
@@ -347,11 +356,14 @@ public class RobotMovement : MonoBehaviour
         lines.Add($"# record_interval_sec,{recordIntervalSeconds.ToString(CultureInfo.InvariantCulture)}");
         lines.Add($"# record_frequency_hz,{recordingFrequencyHz.ToString(CultureInfo.InvariantCulture)}");
         lines.Add($"# duration_sec,{durationSeconds.ToString(CultureInfo.InvariantCulture)}");
-        lines.Add("# frame = 0-based index from start of recording; angles = degrees relative to 0° (current joint angle)");
+        lines.Add(outputArduinoAngles
+            ? "# frame = 0-based index from start of recording; angles = Arduino degrees (converted from Unity)"
+            : "# frame = 0-based index from start of recording; angles = Unity degrees relative to 0° (current joint angle)");
         lines.Add("frame,leftFemur,rightFemur,leftTibia,rightTibia,leftFoot,rightFoot");
 
         int frame = 0;
         float elapsed = 0f;
+        string[] jointNames = { "leftFemur", "rightFemur", "leftTibia", "rightTibia", "leftFoot", "rightFoot" };
 
         while (elapsed < durationSeconds)
         {
@@ -361,6 +373,16 @@ public class RobotMovement : MonoBehaviour
             float rt = GetAngleDegrees(rightTibia);
             float lfoot = GetAngleDegrees(leftFoot);
             float rfoot = GetAngleDegrees(rightFoot);
+
+            if (outputArduinoAngles)
+            {
+                lf = UnityToArduinoAngle(jointNames[0], lf);
+                rf = UnityToArduinoAngle(jointNames[1], rf);
+                lt = UnityToArduinoAngle(jointNames[2], lt);
+                rt = UnityToArduinoAngle(jointNames[3], rt);
+                lfoot = UnityToArduinoAngle(jointNames[4], lfoot);
+                rfoot = UnityToArduinoAngle(jointNames[5], rfoot);
+            }
 
             lines.Add(string.Format(CultureInfo.InvariantCulture,
                 "{0},{1},{2},{3},{4},{5},{6}",
