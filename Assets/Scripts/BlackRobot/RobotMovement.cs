@@ -121,36 +121,34 @@ public class RobotMovement : MonoBehaviour
     {
         if (body == null || body.dofCount == 0) return;
 
-        if (body.twistLock == ArticulationDofLock.LimitedMotion || body.twistLock == ArticulationDofLock.FreeMotion)
+        void ConfigureDrive(ref ArticulationDrive drive)
         {
-            ArticulationDrive drive = body.xDrive;
             drive.driveType = ArticulationDriveType.Target;
             drive.stiffness = stiffness;
             drive.damping = damping;
             drive.forceLimit = forceLimit;
             drive.target = 0f; // degrees
+            drive.targetVelocity = 300f; //degrees per second
+        }
+
+        if (body.twistLock == ArticulationDofLock.LimitedMotion || body.twistLock == ArticulationDofLock.FreeMotion)
+        {
+            ArticulationDrive drive = body.xDrive;
+            ConfigureDrive(ref drive);
             body.xDrive = drive;
         }
 
         if (body.swingYLock == ArticulationDofLock.LimitedMotion || body.swingYLock == ArticulationDofLock.FreeMotion)
         {
             ArticulationDrive drive = body.yDrive;
-            drive.driveType = ArticulationDriveType.Target;
-            drive.stiffness = stiffness;
-            drive.damping = damping;
-            drive.forceLimit = forceLimit;
-            drive.target = 0f; // degrees
+            ConfigureDrive(ref drive);
             body.yDrive = drive;
         }
 
         if (body.swingZLock == ArticulationDofLock.LimitedMotion || body.swingZLock == ArticulationDofLock.FreeMotion)
         {
             ArticulationDrive drive = body.zDrive;
-            drive.driveType = ArticulationDriveType.Target;
-            drive.stiffness = stiffness;
-            drive.damping = damping;
-            drive.forceLimit = forceLimit;
-            drive.target = 0f; // degrees
+            ConfigureDrive(ref drive);
             body.zDrive = drive;
         }
     }

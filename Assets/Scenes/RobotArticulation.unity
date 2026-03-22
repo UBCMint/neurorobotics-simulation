@@ -5687,7 +5687,7 @@ MonoBehaviour:
   csvFile: {fileID: 4900000, guid: 1bac9b15719f74941bd3bad3902317b1, type: 3}
   treatInputCsvAsArduinoAngles: 1
   outputCsvFileName: joint_positions.csv
-  outputCsvRecordIntervalSeconds: 0.02
+  outputCsvRecordIntervalSeconds: 0.004167
   leftFemur: {fileID: 286465856}
   rightFemur: {fileID: 1807355759}
   leftTibia: {fileID: 270761080}
@@ -5695,26 +5695,14 @@ MonoBehaviour:
   leftFoot: {fileID: 453995030}
   rightFoot: {fileID: 1580622285}
   targetAngle: 45
-  femurStiffness: 500
-  tibiaStiffness: 200
-  feetStiffness: 100
-  femurDamping: 100
-  tibiaDamping: 80
-  feetDamping: 50
+  femurStiffness: 0.05
+  tibiaStiffness: 0.05
+  feetStiffness: 0.05
+  femurDamping: 0.001
+  tibiaDamping: 0.001
+  feetDamping: 0.001
   forceLimit: 100000
   jointResetMode: 0
-  leftFemurArduinoAngleAtUnityZero: 90
-  rightFemurArduinoAngleAtUnityZero: 0
-  leftTibiaArduinoAngleAtUnityZero: 70
-  rightTibiaArduinoAngleAtUnityZero: 0
-  leftFootArduinoAngleAtUnityZero: 90
-  rightFootArduinoAngleAtUnityZero: 0
-  leftFemurUnityIncreaseMatchesArduino: 1
-  rightFemurUnityIncreaseMatchesArduino: 1
-  leftTibiaUnityIncreaseMatchesArduino: 0
-  rightTibiaUnityIncreaseMatchesArduino: 1
-  leftFootUnityIncreaseMatchesArduino: 0
-  rightFootUnityIncreaseMatchesArduino: 1
 --- !u!1001 &1628826768
 PrefabInstance:
   m_ObjectHideFlags: 0
