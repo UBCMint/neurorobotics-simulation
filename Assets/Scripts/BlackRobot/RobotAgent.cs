@@ -17,6 +17,9 @@ namespace Assets.Scripts.BlackRobot
         public ArticulationLimb leftFoot;
         public ArticulationLimb rightFoot;
 
+        [Header("Agent Parameters")]
+        [SerializeField] private Vector3 resetPosition = new Vector3(0.0f, 7.0f, 0.0f);
+
         public override void Initialize()
         {
             // Called once when the agent is first enabled.
@@ -27,8 +30,8 @@ namespace Assets.Scripts.BlackRobot
         public override void OnEpisodeBegin()
         {
             // Reset the robot's root (pelvis) to starting position and rotation
-            pelvis.TeleportRoot(pelvis.transform.parent.position, Quaternion.identity);
-            pelvis.velocity = Vector3.zero;
+            pelvis.TeleportRoot(resetPosition, Quaternion.identity);
+            pelvis.linearVelocity = Vector3.zero;
             pelvis.angularVelocity = Vector3.zero;
 
             // Randomize limbs
@@ -47,13 +50,13 @@ namespace Assets.Scripts.BlackRobot
             sensor.AddObservation(pelvis.transform.up); // 3 obs: Is it upright?
             
             // Pelvis velocities
-            sensor.AddObservation(pelvis.velocity); // 3 obs
+            sensor.AddObservation(pelvis.linearVelocity); // 3 obs
             sensor.AddObservation(pelvis.angularVelocity); // 3 obs
         }
 
         public override void OnActionReceived(ActionBuffers actions)
         {
-            var continuousActions = actions.ContinuousActions;
+            var continuousActions = actions.ContinuousActions;  // actions is read only, whereas actionsOut is write only.
 
             // Map actions to limb angles (continuous actions come as a float from -1.0 to 1.0)
             // Multiplying by, say, 90 degrees to give it a sensible movement range
@@ -70,7 +73,7 @@ namespace Assets.Scripts.BlackRobot
             AddReward(0.01f);
 
             // Check if the robot has fallen over (height too low or tilted too far)
-            if (pelvis.transform.localPosition.y < 0.5f || pelvis.transform.up.y < 0.5f)
+            if (pelvis.transform.localPosition.y < 3.0f || pelvis.transform.up.y < 0.5f)
             {
                 SetReward(-1f);
                 EndEpisode();
@@ -82,10 +85,17 @@ namespace Assets.Scripts.BlackRobot
             // Used for manual testing/debugging before the model is trained.
             // Map your keyboard/gamepad input to the action arrays.
 
+            float targetAngle = 45.0f;
+
             var continuousActionsOut = actionsOut.ContinuousActions;
-            // Example map:
-            // continuousActionsOut[0] = Input.GetAxis("Vertical");
-            // continuousActionsOut[1] = Input.GetAxis("Horizontal");
+
+            continuousActionsOut[0] = Input.GetKey(KeyCode.W) ? -targetAngle : Input.GetKey(KeyCode.S) ? targetAngle : 0f;
+            continuousActionsOut[1] = Input.GetKey(KeyCode.I) ? targetAngle : Input.GetKey(KeyCode.K) ? -targetAngle : 0f;
+            continuousActionsOut[2] = Input.GetKey(KeyCode.D) ? targetAngle : Input.GetKey(KeyCode.A) ? -targetAngle : 0f;
+            continuousActionsOut[3] = Input.GetKey(KeyCode.L) ? targetAngle : Input.GetKey(KeyCode.J) ? -targetAngle : 0f;
+            continuousActionsOut[4] = Input.GetKey(KeyCode.E) ? targetAngle : Input.GetKey(KeyCode.Q) ? -targetAngle : 0f;
+            continuousActionsOut[5] = Input.GetKey(KeyCode.O) ? -targetAngle : Input.GetKey(KeyCode.U) ? targetAngle : 0f;
+
         }
     }
 }

@@ -34,17 +34,17 @@ public class RobotMovement : MonoBehaviour
 
     private void Start()
     {
-        CreateJointDictionary();
+        //CreateJointDictionary();
 
-        // Initialize drives for POSITION control
-        InitializeDrive(leftFemur, femurStiffness, femurDamping);
-        InitializeDrive(rightFemur, femurStiffness, femurDamping);
-        InitializeDrive(leftTibia, tibiaStiffness, tibiaDamping);
-        InitializeDrive(rightTibia, tibiaStiffness, tibiaDamping);
-        InitializeDrive(leftFoot, feetStiffness, feetDamping);
-        InitializeDrive(rightFoot, feetStiffness, feetDamping);
+        //// Initialize drives for POSITION control
+        //InitializeDrive(leftFemur, femurStiffness, femurDamping);
+        //InitializeDrive(rightFemur, femurStiffness, femurDamping);
+        //InitializeDrive(leftTibia, tibiaStiffness, tibiaDamping);
+        //InitializeDrive(rightTibia, tibiaStiffness, tibiaDamping);
+        //InitializeDrive(leftFoot, feetStiffness, feetDamping);
+        //InitializeDrive(rightFoot, feetStiffness, feetDamping);
 
-        StartCoroutine(processInputCSV());
+        //StartCoroutine(processInputCSV());
     }
 
     private void CreateJointDictionary()
