@@ -20,3 +20,24 @@ behaviors:
     max_steps: 5000000
     time_horizon: 64
     summary_freq: 50000
+
+environment_parameters:
+  stiffness:
+    sampler_type: gaussian
+    sampler_parameters:
+      mean: 100.0
+      st_dev: 20.0
+
+  damping:
+    sampler_type: gaussian
+    sampler_parameters:
+      mean: 50.0
+      st_dev: 10.0
+
+  floorFriction:
+    sampler_type: uniform
+    sampler_parameters:
+      min_value: 0.3
+      max_value: 0.9
+
+

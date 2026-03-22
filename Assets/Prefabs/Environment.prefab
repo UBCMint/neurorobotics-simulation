@@ -2348,6 +2348,7 @@ MonoBehaviour:
   leftFoot: {fileID: 4341826716483638224}
   rightFoot: {fileID: 1605993940432493472}
   resetPosition: {x: 0, y: 7, z: 0}
+  floorCollider: {fileID: 8501043767103229238}
 --- !u!114 &42376191007934311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3527,7 +3528,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 1
-  m_ParentAnchorPosition: {x: 1.0417196, y: 2.0710983, z: -4.0823784}
+  m_ParentAnchorPosition: {x: 1.0417196, y: 2.0710993, z: -4.0823784}
   m_ParentAnchorRotation: {x: 0.000000037024037, y: 0.707107, z: 0.00000003702402, w: 0.70710665}
   m_AnchorPosition: {x: 0.6482808, y: 4.1511, z: -1.4976223}
   m_AnchorRotation: {x: 0.000000037024016, y: 0.7071066, z: -0.000000037024034, w: -0.70710695}
@@ -3649,7 +3650,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.71537876, y: 0.62888813, z: 1.4219041}
+  m_ParentAnchorPosition: {x: -0.71537876, y: 0.62888765, z: 1.4219041}
   m_ParentAnchorRotation: {x: 0.00000006170669, y: 0.70710665, z: -0.00000006170673, w: -0.707107}
   m_AnchorPosition: {x: 0.9846216, y: 0.69888735, z: 0.8919032}
   m_AnchorRotation: {x: 0.000000061706686, y: 0.7071066, z: -0.00000006170672, w: -0.70710695}

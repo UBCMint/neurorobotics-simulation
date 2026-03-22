@@ -77,6 +77,27 @@ namespace Assets.Scripts.BlackRobot
 
             Debug.Log($"{gameObject.name}'s new drive targets -> X: {xAngle}, Y: {yAngle}, Z: {zAngle}");
         }
+
+        public void randomizeDamping(float newDamping) {
+            if (limb.twistLock == ArticulationDofLock.LimitedMotion || limb.twistLock == ArticulationDofLock.FreeMotion)
+            {
+                ArticulationDrive drive = limb.xDrive;
+                drive.driveType = ArticulationDriveType.Target;
+                drive.damping = newDamping;
+                limb.xDrive = drive;
+            }
+        }
+
+        public void randomizeStiffness(float newStiffness) {
+            if (limb.twistLock == ArticulationDofLock.LimitedMotion || limb.twistLock == ArticulationDofLock.FreeMotion)
+            {
+                ArticulationDrive drive = limb.xDrive;
+                drive.driveType = ArticulationDriveType.Target;
+                drive.stiffness = newStiffness;
+                limb.xDrive = drive;
+            }
+        }
+
         private void InitializeDrive()
         {
             ArticulationBody body = GetComponent<ArticulationBody>();

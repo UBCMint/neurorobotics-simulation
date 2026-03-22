@@ -20,6 +20,9 @@ namespace Assets.Scripts.BlackRobot
         [Header("Agent Parameters")]
         [SerializeField] private Vector3 resetPosition = new Vector3(0.0f, 7.0f, 0.0f);
 
+        [Header("Floor Components")]
+        [SerializeField] private Collider floorCollider;
+
         public override void Initialize()
         {
             // Called once when the agent is first enabled.
@@ -30,10 +33,19 @@ namespace Assets.Scripts.BlackRobot
         public override void OnEpisodeBegin()
         {
             // Reset the robot's root (pelvis) to starting position and rotation
-            pelvis.TeleportRoot(resetPosition, Quaternion.identity);
+            Vector3 worldPosition = pelvis.transform.parent != null 
+                ? pelvis.transform.parent.TransformPoint(resetPosition) 
+                : resetPosition;
+            
+            Quaternion worldRotation = pelvis.transform.parent != null 
+                ? pelvis.transform.parent.rotation 
+                : Quaternion.identity;
+
+            pelvis.TeleportRoot(worldPosition, worldRotation);
+            
             pelvis.linearVelocity = Vector3.zero;
             pelvis.angularVelocity = Vector3.zero;
-
+            
             // Randomize limbs
             leftFemur.randomizeLimbPosition();
             rightFemur.randomizeLimbPosition();
@@ -41,6 +53,28 @@ namespace Assets.Scripts.BlackRobot
             rightTibia.randomizeLimbPosition();
             leftFoot.randomizeLimbPosition();
             rightFoot.randomizeLimbPosition(); // Fixed typo here (was leftFoot twice before)
+
+            float newDamping = Academy.Instance.EnvironmentParameters.GetWithDefault("damping", 50.0f);
+            leftFemur.randomizeDamping(newDamping);
+            rightFemur.randomizeDamping(newDamping);
+            leftTibia.randomizeDamping(newDamping);
+            rightTibia.randomizeDamping(newDamping);
+            leftFoot.randomizeDamping(newDamping);
+            rightFoot.randomizeDamping(newDamping);
+
+            float newStiffness = Academy.Instance.EnvironmentParameters.GetWithDefault("stiffness", 100.0f);
+            leftFemur.randomizeStiffness(newStiffness);
+            rightFemur.randomizeStiffness(newStiffness);
+            leftTibia.randomizeStiffness(newStiffness);
+            rightTibia.randomizeStiffness(newStiffness);
+            leftFoot.randomizeStiffness(newStiffness);
+            rightFoot.randomizeStiffness(newStiffness);
+
+            float floorFriction = Academy.Instance.EnvironmentParameters.GetWithDefault("floorFriction", 100.0f);
+            floorCollider.material.staticFriction = floorFriction;
+            floorCollider.material.dynamicFriction = floorFriction;
+            floorCollider.material.frictionCombine = PhysicsMaterialCombine.Multiply;
+
         }
 
         public override void CollectObservations(VectorSensor sensor)
