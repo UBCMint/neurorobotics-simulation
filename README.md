@@ -186,4 +186,12 @@ This project is actively developed by the UBC MINT Neurorobotics team.
 
 ---
 
+## License
+
+Copyright © 2026 UBC MINT (Medical Innovation and Technology). All rights reserved.
+
+This project and its contents may not be reproduced, distributed, or used without explicit written permission from UBC MINT.
+
+---
+
 *UBC MINT Neurorobotics — University of British Columbia*
